@@ -94,7 +94,7 @@ const MyFilesPage: React.FC = () => {
             const shareHexes = shares.map(shareToHex)
 
             // 4. Convert key to hex for storage
-            const keyHex = Array.from(keyBytes).map(b => b.toString(16).padStart(2, '0')).join('')
+            const keyHex = Array.from(keyBytes).map((b: number) => b.toString(16).padStart(2, '0')).join('')
 
             // 5. Upload encrypted file to IPFS via API
             const formData = new FormData()

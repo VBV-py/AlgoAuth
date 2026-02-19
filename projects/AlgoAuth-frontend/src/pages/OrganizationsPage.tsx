@@ -129,7 +129,7 @@ const OrganizationsPage: React.FC = () => {
             // 2. Split key via Shamir (2-of-3)
             const shares = splitSecret(keyBytes, 3, 2)
             const shareHexes = shares.map(shareToHex)
-            const keyHex = Array.from(keyBytes).map(b => b.toString(16).padStart(2, '0')).join('')
+            const keyHex = Array.from(keyBytes).map((b: number) => b.toString(16).padStart(2, '0')).join('')
 
             // 3. Upload with groupId
             const formData = new FormData()

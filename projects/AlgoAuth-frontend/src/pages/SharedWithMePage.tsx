@@ -76,7 +76,7 @@ const SharedWithMePage: React.FC = () => {
                         console.log(`🔐 Shamir reconstruction for download: ${file.name}`)
                         const shareArrays = data.shares.map((hex: string) => hexToShare(hex))
                         const reconstructedKey = reconstructSecret(shareArrays)
-                        keyHex = Array.from(reconstructedKey).map(b => b.toString(16).padStart(2, '0')).join('')
+                        keyHex = Array.from(reconstructedKey).map((b: number) => b.toString(16).padStart(2, '0')).join('')
                         console.log(`✅ Key reconstructed (${data.shares.length}/${data.totalShares} shares used)`)
                     } else if (data.encryptionKey) {
                         keyHex = data.encryptionKey
@@ -199,8 +199,8 @@ const SharedWithMePage: React.FC = () => {
                                                 <Badge
                                                     variant="outline"
                                                     className={`text-[10px] px-1.5 py-0 flex items-center gap-0.5 ${file.expiresAt < Date.now()
-                                                            ? 'text-destructive border-destructive/30 bg-destructive/10'
-                                                            : 'text-muted-foreground'
+                                                        ? 'text-destructive border-destructive/30 bg-destructive/10'
+                                                        : 'text-muted-foreground'
                                                         }`}
                                                 >
                                                     <Clock size={8} />
