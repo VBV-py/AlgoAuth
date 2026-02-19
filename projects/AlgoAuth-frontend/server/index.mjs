@@ -16,7 +16,7 @@ dotenv.config({ path: path.resolve(__dirname, '..', '.env.local') })
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
 const app = express()
-const PORT = process.env.API_PORT || 3001
+const PORT = process.env.PORT || process.env.API_PORT || 3001
 const JWT_SECRET = process.env.JWT_SECRET || 'blocksafe-dev-secret-change-in-production'
 const PINATA_JWT = process.env.PINATA_JWT || ''
 const PINATA_GATEWAY = process.env.PINATA_GATEWAY || 'gateway.pinata.cloud'
