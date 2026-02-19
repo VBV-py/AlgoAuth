@@ -1,0 +1,9 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2.1.8
+_src_path: gh:algorandfoundation/algokit-fullstack-template
+author_email: Laksh_Varshney@outlook.com
+author_name: Lakshya
+contract_name: algo_auth
+preset_name: starter
+project_name: AlgoAuth
+
