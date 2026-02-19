@@ -1,0 +1,1714 @@
+#pragma version 11
+#pragma typetrack false
+
+// @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
+main:
+    intcblock 0 1 8 2
+    bytecblock 0x151f7c75 "fo" 0x000a "" "fd" "fileCount" "fc" "fu" "ah" "ae" "groupRegistryAppId" "fn" "fg" "ft" "a1" "a2" "a3" "ap" "ak" "at" "ek"
+    txn ApplicationID
+    bnz main_after_if_else@2
+    // smart_contracts/file_registry/contract.algo.ts:5
+    // fileCount = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 5 // "fileCount"
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/file_registry/contract.algo.ts:6
+    // groupRegistryAppId = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 10 // "groupRegistryAppId"
+    intc_0 // 0
+    app_global_put
+
+main_after_if_else@2:
+    // smart_contracts/file_registry/contract.algo.ts:4
+    // export class FileRegistry extends Contract {
+    txn OnCompletion
+    !
+    assert // OnCompletion must be NoOp
+    txn ApplicationID
+    bz main_create_NoOp@29
+    pushbytess 0x597ec0a3 0xe05f1141 0xcad48d1d 0x80338673 0xe61b76cf 0x8d4ff432 0xbc327e1f 0x77cef5e9 0x20c2b704 0x851f1f26 0xf8730361 0xe58b34ed 0x528a32ff 0x86f685a0 0x99a21e3f 0x475dbf1c 0xb2e4e0e0 0x3cfa6024 0xcc5a6166 0xe4bd9b24 0xc05ace9e 0x552cdef1 0xd1acb40d // method "registerFile(string,string,uint64,string,string,string)uint64", method "updateFile(uint64,string)void", method "deleteFile(uint64)void", method "grantAccess(uint64,string,string,string,uint64)void", method "revokeAccess(uint64,string)void", method "getFileCid(uint64)string", method "getFileOwner(uint64)string", method "getFileName(uint64)string", method "getFileGroupId(uint64)uint64", method "getFileCreatedAt(uint64)uint64", method "getFileUpdatedAt(uint64)uint64", method "getFileIsDeleted(uint64)uint64", method "getFileShare1(uint64)string", method "getFileShare2(uint64)string", method "getFileShare3(uint64)string", method "hasValidAccess(uint64,string)bool", method "getAccessPermission(uint64,string)string", method "getAccessWrappedKey(uint64,string)string", method "getAccessExpiresAt(uint64,string)uint64", method "getAccessGrantedAt(uint64,string)uint64", method "registerPublicKey(string)void", method "getEncryptionKey(string)string", method "getFileCount()uint64"
+    txna ApplicationArgs 0
+    match registerFile updateFile deleteFile grantAccess revokeAccess getFileCid getFileOwner getFileName getFileGroupId getFileCreatedAt getFileUpdatedAt getFileIsDeleted getFileShare1 getFileShare2 getFileShare3 hasValidAccess getAccessPermission getAccessWrappedKey getAccessExpiresAt getAccessGrantedAt registerPublicKey getEncryptionKey getFileCount
+    err
+
+main_create_NoOp@29:
+    // smart_contracts/file_registry/contract.algo.ts:4
+    // export class FileRegistry extends Contract {
+    pushbytes 0x973b616f // method "createApplication(uint64)void"
+    txna ApplicationArgs 0
+    match createApplication
+    err
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.createApplication[routing]() -> void:
+createApplication:
+    // smart_contracts/file_registry/contract.algo.ts:28
+    // @abimethod({ onCreate: 'require' })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:5
+    // fileCount = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 5 // "fileCount"
+    // smart_contracts/file_registry/contract.algo.ts:30
+    // this.fileCount.value = Uint64(0)
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/file_registry/contract.algo.ts:6
+    // groupRegistryAppId = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 10 // "groupRegistryAppId"
+    // smart_contracts/file_registry/contract.algo.ts:31
+    // this.groupRegistryAppId.value = groupAppId
+    swap
+    app_global_put
+    // smart_contracts/file_registry/contract.algo.ts:28
+    // @abimethod({ onCreate: 'require' })
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.registerFile[routing]() -> void:
+registerFile:
+    // smart_contracts/file_registry/contract.algo.ts:34
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 3
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 4
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 5
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 6
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:43
+    // this.fileCount.value = this.fileCount.value + Uint64(1)
+    intc_0 // 0
+    // smart_contracts/file_registry/contract.algo.ts:5
+    // fileCount = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 5 // "fileCount"
+    // smart_contracts/file_registry/contract.algo.ts:43
+    // this.fileCount.value = this.fileCount.value + Uint64(1)
+    app_global_get_ex
+    assert // check GlobalState exists
+    intc_1 // 1
+    +
+    // smart_contracts/file_registry/contract.algo.ts:5
+    // fileCount = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 5 // "fileCount"
+    // smart_contracts/file_registry/contract.algo.ts:43
+    // this.fileCount.value = this.fileCount.value + Uint64(1)
+    dig 1
+    app_global_put
+    // smart_contracts/file_registry/contract.algo.ts:46
+    // this.fileCids(fileId).value = cid
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:8
+    // fileCids = BoxMap<uint64, string>({ keyPrefix: 'fc' })
+    bytec 6 // "fc"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:46
+    // this.fileCids(fileId).value = cid
+    dup
+    box_del
+    pop
+    uncover 7
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:47
+    // this.fileOwners(fileId).value = Txn.sender.bytes.toString()
+    txn Sender
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    dig 2
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:47
+    // this.fileOwners(fileId).value = Txn.sender.bytes.toString()
+    dup
+    box_del
+    pop
+    swap
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:10
+    // fileNames = BoxMap<uint64, string>({ keyPrefix: 'fn' })
+    bytec 11 // "fn"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:48
+    // this.fileNames(fileId).value = filename
+    dup
+    box_del
+    pop
+    uncover 6
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:11
+    // fileGroupIds = BoxMap<uint64, uint64>({ keyPrefix: 'fg' })
+    bytec 12 // "fg"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:49
+    // this.fileGroupIds(fileId).value = groupId
+    uncover 5
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:50
+    // this.fileCreatedAt(fileId).value = Global.latestTimestamp
+    global LatestTimestamp
+    // smart_contracts/file_registry/contract.algo.ts:12
+    // fileCreatedAt = BoxMap<uint64, uint64>({ keyPrefix: 'ft' })
+    bytec 13 // "ft"
+    dig 2
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:50
+    // this.fileCreatedAt(fileId).value = Global.latestTimestamp
+    swap
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:51
+    // this.fileUpdatedAt(fileId).value = Global.latestTimestamp
+    global LatestTimestamp
+    // smart_contracts/file_registry/contract.algo.ts:13
+    // fileUpdatedAt = BoxMap<uint64, uint64>({ keyPrefix: 'fu' })
+    bytec 7 // "fu"
+    dig 2
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:51
+    // this.fileUpdatedAt(fileId).value = Global.latestTimestamp
+    swap
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:14
+    // fileIsDeleted = BoxMap<uint64, uint64>({ keyPrefix: 'fd' })
+    bytec 4 // "fd"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:52
+    // this.fileIsDeleted(fileId).value = Uint64(0)
+    intc_0 // 0
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:16
+    // fileShare1 = BoxMap<uint64, string>({ keyPrefix: 'a1' })
+    bytec 14 // "a1"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:54
+    // this.fileShare1(fileId).value = share1
+    dup
+    box_del
+    pop
+    uncover 4
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:17
+    // fileShare2 = BoxMap<uint64, string>({ keyPrefix: 'a2' })
+    bytec 15 // "a2"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:55
+    // this.fileShare2(fileId).value = share2
+    dup
+    box_del
+    pop
+    uncover 3
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:18
+    // fileShare3 = BoxMap<uint64, string>({ keyPrefix: 'a3' })
+    bytec 16 // "a3"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:56
+    // this.fileShare3(fileId).value = share3
+    dup
+    box_del
+    pop
+    uncover 2
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:34
+    // @abimethod()
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.updateFile[routing]() -> void:
+updateFile:
+    // smart_contracts/file_registry/contract.algo.ts:61
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:63
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    swap
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:63
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:64
+    // assert(this.fileOwners(fileId).value === Txn.sender.bytes.toString(), 'Not the owner')
+    box_get
+    pop
+    txn Sender
+    ==
+    assert // Not the owner
+    // smart_contracts/file_registry/contract.algo.ts:14
+    // fileIsDeleted = BoxMap<uint64, uint64>({ keyPrefix: 'fd' })
+    bytec 4 // "fd"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:65
+    // assert(this.fileIsDeleted(fileId).value === Uint64(0), 'File is deleted')
+    box_get
+    assert // Box must have value
+    btoi
+    !
+    assert // File is deleted
+    // smart_contracts/file_registry/contract.algo.ts:8
+    // fileCids = BoxMap<uint64, string>({ keyPrefix: 'fc' })
+    bytec 6 // "fc"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:67
+    // this.fileCids(fileId).value = newCid
+    dup
+    box_del
+    pop
+    uncover 2
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:68
+    // this.fileUpdatedAt(fileId).value = Global.latestTimestamp
+    global LatestTimestamp
+    // smart_contracts/file_registry/contract.algo.ts:13
+    // fileUpdatedAt = BoxMap<uint64, uint64>({ keyPrefix: 'fu' })
+    bytec 7 // "fu"
+    uncover 2
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:68
+    // this.fileUpdatedAt(fileId).value = Global.latestTimestamp
+    swap
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:61
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.deleteFile[routing]() -> void:
+deleteFile:
+    // smart_contracts/file_registry/contract.algo.ts:71
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:73
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:73
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:74
+    // assert(this.fileOwners(fileId).value === Txn.sender.bytes.toString(), 'Not the owner')
+    box_get
+    pop
+    txn Sender
+    ==
+    assert // Not the owner
+    // smart_contracts/file_registry/contract.algo.ts:14
+    // fileIsDeleted = BoxMap<uint64, uint64>({ keyPrefix: 'fd' })
+    bytec 4 // "fd"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:75
+    // this.fileIsDeleted(fileId).value = Uint64(1)
+    intc_1 // 1
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:71
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.grantAccess[routing]() -> void:
+grantAccess:
+    // smart_contracts/file_registry/contract.algo.ts:78
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 3
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 4
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    txna ApplicationArgs 5
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:86
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    uncover 4
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:86
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:87
+    // assert(this.fileOwners(fileId).value === Txn.sender.bytes.toString(), 'Not the owner')
+    box_get
+    pop
+    txn Sender
+    ==
+    assert // Not the owner
+    // smart_contracts/file_registry/contract.algo.ts:14
+    // fileIsDeleted = BoxMap<uint64, uint64>({ keyPrefix: 'fd' })
+    bytec 4 // "fd"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:88
+    // assert(this.fileIsDeleted(fileId).value === Uint64(0), 'File is deleted')
+    box_get
+    assert // Box must have value
+    btoi
+    !
+    assert // File is deleted
+    // smart_contracts/file_registry/contract.algo.ts:90
+    // const key = { fileId: fileId, user: user }
+    dig 4
+    len
+    itob
+    extract 6 2
+    uncover 5
+    concat
+    swap
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:20
+    // accessHas = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'ah' })
+    bytec 8 // "ah"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:91
+    // this.accessHas(key).value = Uint64(1)
+    intc_1 // 1
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:21
+    // accessPermission = BoxMap<{ fileId: uint64; user: string }, string>({ keyPrefix: 'ap' })
+    bytec 17 // "ap"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:92
+    // this.accessPermission(key).value = permission
+    dup
+    box_del
+    pop
+    uncover 4
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:22
+    // accessWrappedKey = BoxMap<{ fileId: uint64; user: string }, string>({ keyPrefix: 'ak' })
+    bytec 18 // "ak"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:93
+    // this.accessWrappedKey(key).value = wrappedKey
+    dup
+    box_del
+    pop
+    uncover 3
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:94
+    // this.accessGrantedAt(key).value = Global.latestTimestamp
+    global LatestTimestamp
+    // smart_contracts/file_registry/contract.algo.ts:23
+    // accessGrantedAt = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'at' })
+    bytec 19 // "at"
+    dig 2
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:94
+    // this.accessGrantedAt(key).value = Global.latestTimestamp
+    swap
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:24
+    // accessExpiresAt = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'ae' })
+    bytec 9 // "ae"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:95
+    // this.accessExpiresAt(key).value = expiresAt
+    swap
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:78
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.revokeAccess[routing]() -> void:
+revokeAccess:
+    // smart_contracts/file_registry/contract.algo.ts:98
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:100
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    swap
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    dig 1
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:100
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:101
+    // assert(this.fileOwners(fileId).value === Txn.sender.bytes.toString(), 'Not the owner')
+    box_get
+    pop
+    txn Sender
+    ==
+    assert // Not the owner
+    // smart_contracts/file_registry/contract.algo.ts:102
+    // const key = { fileId: fileId, user: user }
+    dig 1
+    len
+    itob
+    extract 6 2
+    uncover 2
+    concat
+    swap
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:20
+    // accessHas = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'ah' })
+    bytec 8 // "ah"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:103
+    // this.accessHas(key).value = Uint64(0)
+    intc_0 // 0
+    itob
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:98
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileCid[routing]() -> void:
+getFileCid:
+    // smart_contracts/file_registry/contract.algo.ts:106
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:108
+    // assert(this.fileCids(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:8
+    // fileCids = BoxMap<uint64, string>({ keyPrefix: 'fc' })
+    bytec 6 // "fc"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:108
+    // assert(this.fileCids(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:109
+    // return this.fileCids(fileId).value
+    box_get
+    pop
+    // smart_contracts/file_registry/contract.algo.ts:106
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileOwner[routing]() -> void:
+getFileOwner:
+    // smart_contracts/file_registry/contract.algo.ts:112
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:114
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:114
+    // assert(this.fileOwners(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:115
+    // return this.fileOwners(fileId).value
+    box_get
+    pop
+    // smart_contracts/file_registry/contract.algo.ts:112
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileName[routing]() -> void:
+getFileName:
+    // smart_contracts/file_registry/contract.algo.ts:118
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:120
+    // assert(this.fileNames(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:10
+    // fileNames = BoxMap<uint64, string>({ keyPrefix: 'fn' })
+    bytec 11 // "fn"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:120
+    // assert(this.fileNames(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:121
+    // return this.fileNames(fileId).value
+    box_get
+    pop
+    // smart_contracts/file_registry/contract.algo.ts:118
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileGroupId[routing]() -> void:
+getFileGroupId:
+    // smart_contracts/file_registry/contract.algo.ts:124
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:126
+    // assert(this.fileGroupIds(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:11
+    // fileGroupIds = BoxMap<uint64, uint64>({ keyPrefix: 'fg' })
+    bytec 12 // "fg"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:126
+    // assert(this.fileGroupIds(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:127
+    // return this.fileGroupIds(fileId).value
+    box_get
+    pop
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:124
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileCreatedAt[routing]() -> void:
+getFileCreatedAt:
+    // smart_contracts/file_registry/contract.algo.ts:130
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:132
+    // assert(this.fileCreatedAt(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:12
+    // fileCreatedAt = BoxMap<uint64, uint64>({ keyPrefix: 'ft' })
+    bytec 13 // "ft"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:132
+    // assert(this.fileCreatedAt(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:133
+    // return this.fileCreatedAt(fileId).value
+    box_get
+    pop
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:130
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileUpdatedAt[routing]() -> void:
+getFileUpdatedAt:
+    // smart_contracts/file_registry/contract.algo.ts:136
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:138
+    // assert(this.fileUpdatedAt(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:13
+    // fileUpdatedAt = BoxMap<uint64, uint64>({ keyPrefix: 'fu' })
+    bytec 7 // "fu"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:138
+    // assert(this.fileUpdatedAt(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:139
+    // return this.fileUpdatedAt(fileId).value
+    box_get
+    pop
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:136
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileIsDeleted[routing]() -> void:
+getFileIsDeleted:
+    // smart_contracts/file_registry/contract.algo.ts:142
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:144
+    // assert(this.fileIsDeleted(fileId).exists, 'File does not exist')
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:14
+    // fileIsDeleted = BoxMap<uint64, uint64>({ keyPrefix: 'fd' })
+    bytec 4 // "fd"
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:144
+    // assert(this.fileIsDeleted(fileId).exists, 'File does not exist')
+    dup
+    box_len
+    bury 1
+    assert // File does not exist
+    // smart_contracts/file_registry/contract.algo.ts:145
+    // return this.fileIsDeleted(fileId).value
+    box_get
+    pop
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:142
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare1[routing]() -> void:
+getFileShare1:
+    // smart_contracts/file_registry/contract.algo.ts:148
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:150
+    // if (this.fileShare1(fileId).exists) {
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:16
+    // fileShare1 = BoxMap<uint64, string>({ keyPrefix: 'a1' })
+    bytec 14 // "a1"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:150
+    // if (this.fileShare1(fileId).exists) {
+    box_len
+    bury 1
+    bz getFileShare1_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:151
+    // return this.fileShare1(fileId).value
+    dup
+    box_get
+    assert // Box must have value
+
+getFileShare1_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare1@4:
+    // smart_contracts/file_registry/contract.algo.ts:148
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getFileShare1_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:153
+    // return ''
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:148
+    // @abimethod({ readonly: true })
+    b getFileShare1_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare1@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare2[routing]() -> void:
+getFileShare2:
+    // smart_contracts/file_registry/contract.algo.ts:156
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:158
+    // if (this.fileShare2(fileId).exists) {
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:17
+    // fileShare2 = BoxMap<uint64, string>({ keyPrefix: 'a2' })
+    bytec 15 // "a2"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:158
+    // if (this.fileShare2(fileId).exists) {
+    box_len
+    bury 1
+    bz getFileShare2_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:159
+    // return this.fileShare2(fileId).value
+    dup
+    box_get
+    assert // Box must have value
+
+getFileShare2_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare2@4:
+    // smart_contracts/file_registry/contract.algo.ts:156
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getFileShare2_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:161
+    // return ''
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:156
+    // @abimethod({ readonly: true })
+    b getFileShare2_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare2@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare3[routing]() -> void:
+getFileShare3:
+    // smart_contracts/file_registry/contract.algo.ts:164
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/file_registry/contract.algo.ts:166
+    // if (this.fileShare3(fileId).exists) {
+    itob
+    // smart_contracts/file_registry/contract.algo.ts:18
+    // fileShare3 = BoxMap<uint64, string>({ keyPrefix: 'a3' })
+    bytec 16 // "a3"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:166
+    // if (this.fileShare3(fileId).exists) {
+    box_len
+    bury 1
+    bz getFileShare3_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:167
+    // return this.fileShare3(fileId).value
+    dup
+    box_get
+    assert // Box must have value
+
+getFileShare3_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare3@4:
+    // smart_contracts/file_registry/contract.algo.ts:164
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getFileShare3_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:169
+    // return ''
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:164
+    // @abimethod({ readonly: true })
+    b getFileShare3_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileShare3@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.hasValidAccess[routing]() -> void:
+hasValidAccess:
+    intc_0 // 0
+    dup
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:172
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    swap
+    // smart_contracts/file_registry/contract.algo.ts:174
+    // if (!this.fileOwners(fileId).exists) return false
+    itob
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:9
+    // fileOwners = BoxMap<uint64, string>({ keyPrefix: 'fo' })
+    bytec_1 // "fo"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:174
+    // if (!this.fileOwners(fileId).exists) return false
+    box_len
+    bury 1
+    bnz hasValidAccess_after_if_else@3
+    intc_0 // 0
+
+hasValidAccess_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.hasValidAccess@14:
+    // smart_contracts/file_registry/contract.algo.ts:172
+    // @abimethod({ readonly: true })
+    pushbytes 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+hasValidAccess_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:14
+    // fileIsDeleted = BoxMap<uint64, uint64>({ keyPrefix: 'fd' })
+    bytec 4 // "fd"
+    dig 2
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:175
+    // if (this.fileIsDeleted(fileId).value === Uint64(1)) return false
+    box_get
+    assert // Box must have value
+    btoi
+    intc_1 // 1
+    ==
+    bz hasValidAccess_after_if_else@5
+    intc_0 // 0
+    // smart_contracts/file_registry/contract.algo.ts:172
+    // @abimethod({ readonly: true })
+    b hasValidAccess_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.hasValidAccess@14
+
+hasValidAccess_after_if_else@5:
+    // smart_contracts/file_registry/contract.algo.ts:176
+    // if (this.fileOwners(fileId).value === user) return true
+    dup
+    box_get
+    assert // Box must have value
+    dig 3
+    ==
+    bz hasValidAccess_after_if_else@7
+    intc_1 // 1
+    // smart_contracts/file_registry/contract.algo.ts:172
+    // @abimethod({ readonly: true })
+    b hasValidAccess_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.hasValidAccess@14
+
+hasValidAccess_after_if_else@7:
+    // smart_contracts/file_registry/contract.algo.ts:178
+    // const key = { fileId: fileId, user: user }
+    dig 2
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    dig 2
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    dup
+    bury 6
+    // smart_contracts/file_registry/contract.algo.ts:20
+    // accessHas = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'ah' })
+    bytec 8 // "ah"
+    swap
+    concat
+    dup
+    bury 7
+    // smart_contracts/file_registry/contract.algo.ts:179
+    // if (this.accessHas(key).exists && this.accessHas(key).value === Uint64(1)) {
+    box_len
+    bury 1
+    bz hasValidAccess_after_if_else@13
+    dig 5
+    box_get
+    assert // Box must have value
+    btoi
+    intc_1 // 1
+    ==
+    bz hasValidAccess_after_if_else@13
+    // smart_contracts/file_registry/contract.algo.ts:24
+    // accessExpiresAt = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'ae' })
+    bytec 9 // "ae"
+    dig 5
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:180
+    // const expires: uint64 = this.accessExpiresAt(key).value
+    box_get
+    assert // Box must have value
+    btoi
+    dup
+    bury 5
+    // smart_contracts/file_registry/contract.algo.ts:181
+    // if (expires === Uint64(0) || expires > Global.latestTimestamp) {
+    bz hasValidAccess_if_body@11
+    dig 3
+    global LatestTimestamp
+    >
+    bz hasValidAccess_after_if_else@13
+
+hasValidAccess_if_body@11:
+    // smart_contracts/file_registry/contract.algo.ts:182
+    // return true
+    intc_1 // 1
+    // smart_contracts/file_registry/contract.algo.ts:172
+    // @abimethod({ readonly: true })
+    b hasValidAccess_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.hasValidAccess@14
+
+hasValidAccess_after_if_else@13:
+    // smart_contracts/file_registry/contract.algo.ts:185
+    // return false
+    intc_0 // 0
+    // smart_contracts/file_registry/contract.algo.ts:172
+    // @abimethod({ readonly: true })
+    b hasValidAccess_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.hasValidAccess@14
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessPermission[routing]() -> void:
+getAccessPermission:
+    // smart_contracts/file_registry/contract.algo.ts:188
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:190
+    // const key = { fileId: fileId, user: user }
+    swap
+    itob
+    dig 1
+    len
+    itob
+    extract 6 2
+    uncover 2
+    concat
+    swap
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:21
+    // accessPermission = BoxMap<{ fileId: uint64; user: string }, string>({ keyPrefix: 'ap' })
+    bytec 17 // "ap"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:191
+    // if (this.accessPermission(key).exists) {
+    box_len
+    bury 1
+    bz getAccessPermission_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:192
+    // return this.accessPermission(key).value
+    dup
+    box_get
+    assert // Box must have value
+
+getAccessPermission_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessPermission@4:
+    // smart_contracts/file_registry/contract.algo.ts:188
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getAccessPermission_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:194
+    // return ''
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:188
+    // @abimethod({ readonly: true })
+    b getAccessPermission_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessPermission@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessWrappedKey[routing]() -> void:
+getAccessWrappedKey:
+    // smart_contracts/file_registry/contract.algo.ts:197
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:199
+    // const key = { fileId: fileId, user: user }
+    swap
+    itob
+    dig 1
+    len
+    itob
+    extract 6 2
+    uncover 2
+    concat
+    swap
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:22
+    // accessWrappedKey = BoxMap<{ fileId: uint64; user: string }, string>({ keyPrefix: 'ak' })
+    bytec 18 // "ak"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:200
+    // if (this.accessWrappedKey(key).exists) {
+    box_len
+    bury 1
+    bz getAccessWrappedKey_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:201
+    // return this.accessWrappedKey(key).value
+    dup
+    box_get
+    assert // Box must have value
+
+getAccessWrappedKey_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessWrappedKey@4:
+    // smart_contracts/file_registry/contract.algo.ts:197
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getAccessWrappedKey_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:203
+    // return ''
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:197
+    // @abimethod({ readonly: true })
+    b getAccessWrappedKey_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessWrappedKey@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessExpiresAt[routing]() -> void:
+getAccessExpiresAt:
+    // smart_contracts/file_registry/contract.algo.ts:206
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:208
+    // const key = { fileId: fileId, user: user }
+    swap
+    itob
+    dig 1
+    len
+    itob
+    extract 6 2
+    uncover 2
+    concat
+    swap
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:24
+    // accessExpiresAt = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'ae' })
+    bytec 9 // "ae"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:209
+    // if (this.accessExpiresAt(key).exists) {
+    box_len
+    bury 1
+    bz getAccessExpiresAt_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:210
+    // return this.accessExpiresAt(key).value
+    dup
+    box_get
+    assert // Box must have value
+    btoi
+
+getAccessExpiresAt_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessExpiresAt@4:
+    // smart_contracts/file_registry/contract.algo.ts:206
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getAccessExpiresAt_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:212
+    // return Uint64(0)
+    intc_0 // 0
+    // smart_contracts/file_registry/contract.algo.ts:206
+    // @abimethod({ readonly: true })
+    b getAccessExpiresAt_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessExpiresAt@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessGrantedAt[routing]() -> void:
+getAccessGrantedAt:
+    // smart_contracts/file_registry/contract.algo.ts:215
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:217
+    // const key = { fileId: fileId, user: user }
+    swap
+    itob
+    dig 1
+    len
+    itob
+    extract 6 2
+    uncover 2
+    concat
+    swap
+    bytec_2 // 0x000a
+    concat
+    swap
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:23
+    // accessGrantedAt = BoxMap<{ fileId: uint64; user: string }, uint64>({ keyPrefix: 'at' })
+    bytec 19 // "at"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:218
+    // if (this.accessGrantedAt(key).exists) {
+    box_len
+    bury 1
+    bz getAccessGrantedAt_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:219
+    // return this.accessGrantedAt(key).value
+    dup
+    box_get
+    assert // Box must have value
+    btoi
+
+getAccessGrantedAt_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessGrantedAt@4:
+    // smart_contracts/file_registry/contract.algo.ts:215
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getAccessGrantedAt_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:221
+    // return Uint64(0)
+    intc_0 // 0
+    // smart_contracts/file_registry/contract.algo.ts:215
+    // @abimethod({ readonly: true })
+    b getAccessGrantedAt_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getAccessGrantedAt@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.registerPublicKey[routing]() -> void:
+registerPublicKey:
+    // smart_contracts/file_registry/contract.algo.ts:224
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:26
+    // encryptionKeys = BoxMap<string, string>({ keyPrefix: 'ek' })
+    bytec 20 // "ek"
+    // smart_contracts/file_registry/contract.algo.ts:226
+    // this.encryptionKeys(Txn.sender.bytes.toString()).value = publicKey
+    txn Sender
+    // smart_contracts/file_registry/contract.algo.ts:26
+    // encryptionKeys = BoxMap<string, string>({ keyPrefix: 'ek' })
+    concat
+    // smart_contracts/file_registry/contract.algo.ts:226
+    // this.encryptionKeys(Txn.sender.bytes.toString()).value = publicKey
+    dup
+    box_del
+    pop
+    swap
+    box_put
+    // smart_contracts/file_registry/contract.algo.ts:224
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getEncryptionKey[routing]() -> void:
+getEncryptionKey:
+    // smart_contracts/file_registry/contract.algo.ts:229
+    // @abimethod({ readonly: true })
+    txna ApplicationArgs 1
+    dup
+    intc_0 // 0
+    extract_uint16 // on error: invalid array length header
+    intc_3 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/file_registry/contract.algo.ts:26
+    // encryptionKeys = BoxMap<string, string>({ keyPrefix: 'ek' })
+    bytec 20 // "ek"
+    swap
+    concat
+    dup
+    // smart_contracts/file_registry/contract.algo.ts:231
+    // if (this.encryptionKeys(user).exists) {
+    box_len
+    bury 1
+    bz getEncryptionKey_after_if_else@3
+    // smart_contracts/file_registry/contract.algo.ts:232
+    // return this.encryptionKeys(user).value
+    dup
+    box_get
+    assert // Box must have value
+
+getEncryptionKey_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getEncryptionKey@4:
+    // smart_contracts/file_registry/contract.algo.ts:229
+    // @abimethod({ readonly: true })
+    dup
+    len
+    itob
+    extract 6 2
+    swap
+    concat
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+getEncryptionKey_after_if_else@3:
+    // smart_contracts/file_registry/contract.algo.ts:234
+    // return ''
+    bytec_3 // ""
+    // smart_contracts/file_registry/contract.algo.ts:229
+    // @abimethod({ readonly: true })
+    b getEncryptionKey_after_inlined_smart_contracts/file_registry/contract.algo.ts::FileRegistry.getEncryptionKey@4
+
+
+// smart_contracts/file_registry/contract.algo.ts::FileRegistry.getFileCount[routing]() -> void:
+getFileCount:
+    // smart_contracts/file_registry/contract.algo.ts:239
+    // return this.fileCount.value
+    intc_0 // 0
+    // smart_contracts/file_registry/contract.algo.ts:5
+    // fileCount = GlobalState<uint64>({ initialValue: Uint64(0) })
+    bytec 5 // "fileCount"
+    // smart_contracts/file_registry/contract.algo.ts:239
+    // return this.fileCount.value
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/file_registry/contract.algo.ts:237
+    // @abimethod({ readonly: true })
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
