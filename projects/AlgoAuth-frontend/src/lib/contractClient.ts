@@ -47,7 +47,11 @@ export function getGroupRegistryAppId(): bigint {
  * Get the API base URL
  */
 export function getApiBaseUrl(): string {
-    return import.meta.env.VITE_API_BASE_URL || '/api'
+    const url = import.meta.env.VITE_API_BASE_URL
+    if (!url) {
+        console.warn('⚠️ VITE_API_BASE_URL is not set. API calls will fail. Set it to your backend URL.')
+    }
+    return url || ''
 }
 
 /**
@@ -69,11 +73,30 @@ export async function apiCall(
     }
 
     const baseUrl = getApiBaseUrl()
-    return fetch(`${baseUrl}${path}`, {
+    if (!baseUrl) {
+        return new Response(JSON.stringify({ error: 'Backend API URL not configured. Set VITE_API_BASE_URL.' }), {
+            status: 503,
+            headers: { 'Content-Type': 'application/json' },
+        })
+    }
+
+    const response = await fetch(`${baseUrl}${path}`, {
         ...options,
         headers,
     })
+
+    // Guard: if server returned HTML instead of JSON (e.g. wrong URL or Vercel 404 page)
+    const contentType = response.headers.get('content-type') || ''
+    if (!contentType.includes('application/json') && !contentType.includes('text/plain')) {
+        return new Response(JSON.stringify({ error: `API returned unexpected content-type: ${contentType}. Check VITE_API_BASE_URL.` }), {
+            status: 502,
+            headers: { 'Content-Type': 'application/json' },
+        })
+    }
+
+    return response
 }
+
 
 /**
  * Get authenticated user's JWT
