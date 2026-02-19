@@ -57,7 +57,7 @@
   "scripts": {
     "generate:app-clients": "algokit project link --all",
     "dev": "vite",
-    "build": "npm run generate:app-clients && tsc && vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "eslintConfig": {
