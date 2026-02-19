@@ -157,7 +157,7 @@ const PublicAccessPage: React.FC = () => {
                     <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-violet-500 flex items-center justify-center mx-auto shadow-lg shadow-primary/20">
                         <Shield size={24} className="text-white" />
                     </div>
-                    <h1 className="text-xl font-bold">BlockSafe</h1>
+                    <h1 className="text-xl font-bold">AlgoAuth</h1>
                     <p className="text-sm text-muted-foreground">Secure File Sharing</p>
                 </div>
 

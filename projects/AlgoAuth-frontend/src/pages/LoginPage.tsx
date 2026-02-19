@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { useWallet } from '@txnlab/use-wallet-react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Shield, Lock, Users, Loader2, ChevronRight } from 'lucide-react'
+import { Lock, Users, Loader2, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { apiCall } from '@/lib/contractClient'
+import logoImg from '@/assets/removed_bg-removebg-preview.png'
 
 const LoginPage: React.FC = () => {
     const { wallets, activeAddress } = useWallet()
@@ -20,13 +21,11 @@ const LoginPage: React.FC = () => {
         setError('')
 
         try {
-            // Step 1: Request a nonce from the server (GET /auth/nonce/:address)
             const nonceRes = await apiCall(`/auth/nonce/${activeAddress}`, {
                 method: 'GET',
             })
             const { nonce, message } = await nonceRes.json()
 
-            // Step 2: Verify with the server (POST /auth/verify)
             const verifyRes = await apiCall('/auth/verify', {
                 method: 'POST',
                 body: JSON.stringify({ address: activeAddress, nonce, message }),
@@ -38,7 +37,6 @@ const LoginPage: React.FC = () => {
             navigate('/dashboard')
         } catch (err: any) {
             console.error('Auth error:', err)
-            // Dev fallback: skip if API isn't available
             if (err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError')) {
                 localStorage.setItem('blocksafe_jwt', 'dev-mode-token')
                 navigate('/dashboard')
@@ -52,13 +50,11 @@ const LoginPage: React.FC = () => {
 
     const features = [
         { icon: Lock, text: 'End-to-end AES-256 Encryption' },
-        { icon: Shield, text: 'Shamir Secret Sharing (2-of-3)' },
         { icon: Users, text: 'Algorand On-Chain Access Control' },
     ]
 
     return (
         <div className="min-h-screen flex items-center justify-center relative overflow-hidden p-5">
-            {/* Background gradient */}
             <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(99,102,241,0.15),transparent_50%),radial-gradient(ellipse_at_80%_20%,rgba(6,182,212,0.1),transparent_50%),radial-gradient(ellipse_at_50%_80%,rgba(139,92,246,0.08),transparent_50%)]" />
 
             <motion.div
@@ -75,11 +71,11 @@ const LoginPage: React.FC = () => {
                             transition={{ delay: 0.2 }}
                             className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-primary to-violet-500 flex items-center justify-center shadow-lg shadow-primary/30"
                         >
-                            <Shield size={36} className="text-white" />
+                            <img src={logoImg} alt="AlgoAuth" className="w-12 h-12 object-contain" />
                         </motion.div>
                         <div>
                             <h1 className="text-3xl font-extrabold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-                                BlockSafe
+                                AlgoAuth
                             </h1>
                             <p className="text-muted-foreground text-sm mt-1">
                                 Decentralized File Vault on Algorand
@@ -88,7 +84,6 @@ const LoginPage: React.FC = () => {
                     </CardHeader>
 
                     <CardContent className="space-y-6">
-                        {/* Features */}
                         <div className="space-y-2">
                             {features.map((f, i) => (
                                 <motion.div
@@ -105,7 +100,6 @@ const LoginPage: React.FC = () => {
                         </div>
 
                         {!activeAddress ? (
-                            /* Wallet connection buttons */
                             <div className="space-y-3">
                                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                     Connect Wallet
@@ -128,7 +122,6 @@ const LoginPage: React.FC = () => {
                                 ))}
                             </div>
                         ) : (
-                            /* Authenticated state */
                             <div className="space-y-4">
                                 <div className="text-center space-y-2">
                                     <Badge variant="outline" className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30">
@@ -151,7 +144,7 @@ const LoginPage: React.FC = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <Shield size={18} />
+                                            <img src={logoImg} alt="" className="w-5 h-5 object-contain" />
                                             Sign In with Algorand
                                         </>
                                     )}

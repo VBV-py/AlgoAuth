@@ -7,7 +7,6 @@ import {
     Share2,
     Users,
     LogOut,
-    Shield,
     Menu,
     X,
 } from 'lucide-react'
@@ -15,6 +14,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { ellipseAddress } from '@/utils/ellipseAddress'
+import logoImg from '@/assets/removed_bg-removebg-preview.png'
 
 const navItems = [
     { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -35,7 +35,6 @@ const AppLayout: React.FC = () => {
 
     return (
         <div className="flex min-h-screen">
-            {/* Mobile overlay */}
             {mobileOpen && (
                 <div
                     className="fixed inset-0 bg-black/50 z-40 md:hidden"
@@ -43,26 +42,23 @@ const AppLayout: React.FC = () => {
                 />
             )}
 
-            {/* Sidebar */}
             <aside
                 className={cn(
                     "fixed top-0 left-0 bottom-0 w-64 bg-card/60 backdrop-blur-2xl border-r border-border/50 flex flex-col z-50 transition-transform duration-300",
                     mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
                 )}
             >
-                {/* Logo */}
                 <div className="flex items-center gap-3 px-5 py-5">
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-violet-500 flex items-center justify-center">
-                        <Shield size={18} className="text-white" />
+                        <img src={logoImg} alt="AlgoAuth" className="w-6 h-6 object-contain" />
                     </div>
                     <span className="text-lg font-extrabold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-                        BlockSafe
+                        AlgoAuth
                     </span>
                 </div>
 
                 <Separator className="bg-border/50" />
 
-                {/* Navigation */}
                 <nav className="flex-1 p-3 space-y-1">
                     {navItems.map((item) => (
                         <NavLink
@@ -86,7 +82,6 @@ const AppLayout: React.FC = () => {
 
                 <Separator className="bg-border/50" />
 
-                {/* Footer */}
                 <div className="p-4 space-y-3">
                     {activeAddress && (
                         <p className="text-xs text-muted-foreground font-mono truncate">
@@ -105,7 +100,6 @@ const AppLayout: React.FC = () => {
                 </div>
             </aside>
 
-            {/* Mobile toggle */}
             <Button
                 variant="outline"
                 size="icon"
@@ -115,7 +109,6 @@ const AppLayout: React.FC = () => {
                 {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </Button>
 
-            {/* Main content */}
             <main className="flex-1 md:ml-64 p-6 md:p-8 min-h-screen">
                 <Outlet />
             </main>

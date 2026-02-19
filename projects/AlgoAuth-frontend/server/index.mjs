@@ -17,7 +17,7 @@ dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
 const app = express()
 const PORT = process.env.PORT || process.env.API_PORT || 3001
-const JWT_SECRET = process.env.JWT_SECRET || 'blocksafe-dev-secret-change-in-production'
+const JWT_SECRET = process.env.JWT_SECRET || 'AlgoAuth-dev-secret-change-in-production'
 const PINATA_JWT = process.env.PINATA_JWT || ''
 const PINATA_GATEWAY = process.env.PINATA_GATEWAY || 'gateway.pinata.cloud'
 
@@ -100,7 +100,7 @@ function addAudit(type, actor, fileId, target = null, txId = null) {
 app.get('/api/auth/nonce/:address', (req, res) => {
     const { address } = req.params
     const nonce = crypto.randomBytes(32).toString('hex')
-    const message = `BlockSafe Authentication\nAddress: ${address}\nNonce: ${nonce}\nTimestamp: ${Date.now()}`
+    const message = `AlgoAuth Authentication\nAddress: ${address}\nNonce: ${nonce}\nTimestamp: ${Date.now()}`
     nonces.set(address, { nonce, message, expiresAt: Date.now() + 5 * 60 * 1000 })
     res.json({ nonce, message })
 })
@@ -789,7 +789,7 @@ app.get('/api/health', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`\n🛡️  BlockSafe API Server running on http://localhost:${PORT}`)
+    console.log(`\n🛡️  AlgoAuth API Server running on http://localhost:${PORT}`)
     console.log(`   Health check: http://localhost:${PORT}/api/health`)
     console.log(`   Pinata JWT: ${PINATA_JWT ? '✅ configured (' + PINATA_JWT.substring(0, 20) + '...)' : '❌ not set'}`)
     console.log(`   Gateway: ${PINATA_GATEWAY}`)

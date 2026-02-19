@@ -168,4 +168,8 @@ cython_debug/
 
 # NPM
 node_modules
+deploy.md
+PortProject.md
+README.md
+.env.local
 
